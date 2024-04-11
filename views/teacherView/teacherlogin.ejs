@@ -1,0 +1,40 @@
+ <!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<title>Teacher login page</title>
+</head>
+<body>
+	<%- include('../components/navbarwelcome'); %>
+	<div id="showing-section">
+		<form action="checkloginteacher" method="POST" class="submit">
+			<div class="field">
+		  	<label class="label">Teacher username</label>
+		  	<div class="control">
+		    <input class="input username" name="username" type="text" placeholder="Type in your teacher credentials please" required minlength="4">
+			  </div>
+			</div>
+			<div class="field">
+			  <label class="label">Password</label>
+			  <div class="control">
+			    <input class="password" name="password" type="password" required minlength="6">
+			  </div>
+			</div> 	
+			<div class="control">
+			  <button class="button is-primary">Submit</button>
+			</div>
+		</form>
+	</div>
+	<%-	include('../components/footer'); %>
+</body>
+</html>
+
+
+
+
+    
+    

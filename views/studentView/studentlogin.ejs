@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
+	<title>Login page</title>
+</head>
+<body>
+	<%- include('../components/navbarwelcome'); %>
+	<div id="showing-section">
+		<form action="checkLogin" method="POST" class="submit">
+			<div class="field">
+		  	<label class="label" style="font-family: 'Open Sans', sans-serif;">Student username</label>
+		  	<div class="control">
+		    <input class="input username" name="username" type="text" placeholder="Enter your username" required minlength="4">
+			  </div>
+			</div>
+			<div class="field">
+			  <label class="label" style="font-family: 'Open Sans', sans-serif;">Password</label>
+			  <div class="control">
+			    <input class="password input" placeholder="Enter your password" name="password" type="password" required minlength="6">
+			  </div>
+			</div> 	
+			<div class="control">
+			  <button class="button">Submit</button>
+			</div>
+		</form>
+	</div>
+	<%-	include('../components/footer'); %>
+<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+</html>

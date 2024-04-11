@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<title>Messages page</title>
+</head>
+<body>
+		<%- include('../components/navbar'); %>
+		<div id="showing-section" class="center">
+			<h3 class="font-title">Chat</h3>
+			<div id="users-connected">
+			</div>
+			<div id="send-msg">
+				<label class="font-title">Send message to <i class="fa-solid fa-arrow-up"></i><span class="username"></span></label>
+				<input id="input-text" type="text">
+				<label class="font-title">Or to everyone in the chatbox</label>
+				<button class="btnbrdcast font-title">Everyone</button>
+			</div>
+		</div>
+		<div id="msgBubble"><img src="./messages.png"></div>
+		<div id="showMsgs" class="showIt"></div>
+		<div id="notification" class="showIt"></div>
+		<%-	include('../components/footer'); %>
+<script src="./attached.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./socket.js" ></script>
+</html>

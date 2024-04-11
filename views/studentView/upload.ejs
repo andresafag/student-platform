@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"> 
+	<title>Upload page</title>
+</head>
+<body>
+	<%- include('../components/navbar'); %>
+	<div id="showing-section">
+		<p class="upload-title" class="font-title">Upload documents</p>
+		<form id="uploading" action="download" method="POST" enctype="multipart/form-data">	
+			<div class="title-box">
+				<label class="font-title" for="title">Name of the document</label>
+				<input name="title" id="title" type="text">	
+			</div>
+			<div class="recipients-box">
+				<label for="message" class="font-title">Write message to the teacher</label>
+  				<textarea class="textarea" id="reason" name="reason" placeholder="What this document is about?"></textarea>
+			</div>  
+			<div class="select-file">
+				<label for="uploadFile" class="font-title">Select a file</label>
+				<input id="file" type="file" name="uploadFile" required>	
+			</div>	
+			<div class="select-module">
+				<label for="module" class="font-title">Select the module</label>
+				<select name="module" id="module">
+				<% for (let index = 0; index < mods.length; index++) { %>
+					<option value="<%= mods[index] %>"><%= mods[index] %></option>
+				  <% } %>
+				</select>
+			</div>		
+			<button class="button is-light" name="submit">Upload</button>
+ 	</form>
+	</div>
+	<%-	include('../components/footer'); %>
+	<script>
+	let form = document.querySelector('#uploading')
+	let title = document.querySelector('#title')
+	let reason = document.querySelector('#reason')
+	let file = document.querySelector('#file')
+	let mods = document.querySelector('#module')
+	
+    form.addEventListener("submit", function (event) {
+        event.preventDefault()    
+		const formdata = new FormData();
+		formdata.append("title", title.value) 
+		formdata.append("reason",reason.value) 
+		formdata.append("mods",mods.value) 
+		formdata.append("uploadFile",file.files[0]) 
+        fetch('/download', {
+            method:"POST",
+            mode:"same-origin",
+            body: formdata,
+        }).then((data)=>{
+			let showSection = document.querySelector("#showing-section")
+			console.log(data)
+            if(data.status == 200){
+                showSection.innerHTML = ""
+                showSection.innerHTML = "<div><h3>Sent successfully</h3><a href='/studentIndex'>Go back</a><div>"
+            } else {
+                showSection.innerHTML = ""
+                showSection.innerHTML = "<div><h3>Something went wrong, make sure you try to load a pdf file type</h3><a href='/studentIndex'>Go back</a><div>"
+            }
+        })
+    })
+	</script>
+	<script src="./attached.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="./socket.js" ></script>
+</html>

@@ -1,0 +1,36 @@
+ <!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<title>Dashboard page</title>
+</head>
+<body onload="trigger()">
+	<%- include('../components/navbarteacher'); %>
+	<div id="showing-section">
+		<div>
+			<p>choose any student of your class to check either their grades or to update them as well</p>
+			<div id="student-info">					
+			</div>
+			<div>
+				<form action="changegrades" method="post">
+				
+				</form>
+			</div>
+		</div>
+	</div>
+	<%-	include('../components/footer'); %>
+<script src="./attached_teachers.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./socket.js" ></script>
+<script>
+	// let x = document.querySelector(".selectedValue")
+	// x.addEventListener('change', function(e){
+	// 	let escolhido = document.querySelector(".escolhido")
+	// 	escolhido.setAttribute("value", `${e.target.value}`);
+	// }) 
+</script>
+</html>

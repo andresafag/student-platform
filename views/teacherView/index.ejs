@@ -1,0 +1,39 @@
+ <!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<title>Index page</title>
+</head>
+<body>
+	<%- include('../components/navbarteacher'); %>
+	<div id="showing-section">
+		<div id="mission">
+			<h1>Our mission</h1>
+			<p>There are three commitments we've made to the world. We've been grounded by these since day one: </p>
+			<ul>
+				<li>Increase access to high-quality education for everyone, everywhere</li>
+				<li>Advance teaching and learning through research</li>
+				<li>Enhance teaching and learning on campus and online</li>
+			</ul>
+		</div>
+		<div id="vision">
+			<h1>Our vision</h1>
+			<p>While the internet was enabling innovation at scale across a vast array of industries, higher education was reaching only a tiny fraction of the world’s curious minds. One afternoon in an MIT lab Professor Anant Agarwal and his colleagues from MIT and Harvard sketched out a long shot experiment: a platform that would offer their courses online, open to any person up to the challenge, for free. In February of 2012 Professor Agarwal’s MIT Circuits and Electronics course was launched, and edX.org was born.</p>
+			</div>
+	</div>
+	<%-	include('../components/footer'); %>
+</body>
+<script src="./attached_teachers.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./socket.js" ></script>
+</html>
+
+
+
+
+    
+    

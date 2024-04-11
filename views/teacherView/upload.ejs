@@ -1,0 +1,43 @@
+ <!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<title>Upload page</title>
+</head>
+<body>
+	<%- include('../components/navbarteacher'); %>
+	<div id="showing-section">
+
+		<div id="selectionOfModules">
+			<p>Choose the module you want to see the documents for</p>
+			<% if(folders.length > 0) { %>
+				<select id="module-selection">
+					<option></option>
+					<% for (var i = 0; i < folders.length; i++) {%>
+					<option><%= folders[i]%></option>
+				<% }%>
+				</select>
+			<% } else { %>
+				<p>No documents to choose from</p>
+			<% } %>
+		</div>
+
+		<div>
+		<div class="studentsWhoUploadedFiles"></div>
+		</div>
+
+		<div>
+		<div class="uploadedFiles"></div>
+		</div>
+
+	</div>
+	<%-	include('../components/footer'); %>
+	<script src="./teacherSectionUploadModules.js"></script>
+	<script src="./attached_teachers.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="./socket.js" ></script>
+</html>

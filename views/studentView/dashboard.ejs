@@ -1,0 +1,57 @@
+ <!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<title>Dashboard page</title>
+</head>
+<body>
+	<%- include('../components/navbar'); %>
+	<div id="showing-section">
+		<div id="courses-section">
+			<div id="course-details">
+				<h2 class="course-tittle"><%= courseInfo["currentCourse"][0]["course_name"] %></h2>
+				<div>
+					<p>Credits so far <%= courseInfo["currentCourse"][0]["creditsSoFar"] %></p>
+				</div>
+			</div>
+			<div id="modules">
+				<h2>Grades</h2>
+				<% if(gradeInfo.length > 0) { %>
+					<% for(var i = 0; i < gradeInfo.length; i++) { %>
+						<h2 class="module-tittle"> <%= moduleInfo[i]["moduleName"] %></h2>
+  						<h4>First grade <%= gradeInfo[i].gradeExam1 %></h4>
+  						<h4>Second grade <%= gradeInfo[i].gradeExam2 %></h4>
+  						<h4>Third grade <%= gradeInfo[i].gradeExam3 %></h4>
+  						<h4>First performance grade <%= gradeInfo[i].gradePerformance1 %></h4>
+  						<h4>Second performance grade <%= gradeInfo[i].gradePerformance2 %></h4>
+					<% } %>
+				<% } else { %>
+					<h2>No grades posted up until now</h2>
+				<% } %>
+			</div>
+
+		</div>
+	</div>
+	<%-	include('../components/footer'); %>
+<script src="./attached.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./socket.js" ></script>
+<script>
+	let courseTittle = document.querySelector(".course-tittle")
+	let moduleTittle = document.querySelectorAll(".module-tittle")
+	let courseFirstLetterUpperCase = courseTittle.innerText.charAt(0).toUpperCase()
+	document.querySelector(".course-tittle").innerText = courseFirstLetterUpperCase + courseTittle.innerText.slice(1)
+
+	for (var i = 0; i < moduleTittle.length; i++) {
+		moduleTittle[i].style.fontWeight = "900"
+		let moduleFirstLetterUpperCase = moduleTittle[i].innerText.charAt(0).toUpperCase()
+		moduleTittle[i].innerText = moduleFirstLetterUpperCase + moduleTittle[i].innerText.slice(1)
+	}
+	
+
+</script>
+</html>

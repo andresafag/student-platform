@@ -1,0 +1,29 @@
+ <!DOCTYPE html>
+<html lang="sp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="./styles.css">
+	<title>welcome page</title>
+</head>
+<body>
+	<%- include('components/navbarwelcome'); %>
+	<div id="showing-section">
+		<div id="welcome">
+				<p>Are you a <a id="teacher"><strong>teacher</strong></a> or a <a id="student"><strong>student</strong></a>?</p>				
+		</div>
+	</div>
+	<%-	include('components/footer'); %>
+<script>
+	
+	document.querySelector('#student').addEventListener('click', function () {
+		window.location ="../../studentlogin"
+	})
+
+	document.querySelector('#teacher').addEventListener('click', function () {
+		window.location ="../../teacherlogin"	
+	})
+
+</script>
+</html>
