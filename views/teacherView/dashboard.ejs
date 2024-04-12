@@ -13,11 +13,30 @@
 	<div id="showing-section">
 		<div>
 			<p>choose any student of your class to check either their grades or to update them as well</p>
-			<div id="student-info">					
+			<div id="student-info">
+				<select class="selectedValue">
+					<option value="none"></option>	
+				<% for (let index = 0; index < listStudents.length; index++) {%> 
+					<option class="chosenValue" value= '<%= listStudents[index]["name_student"] %> <%= listStudents[index]["lastname_student"] %>'><%= listStudents[index]["name_student"] %> <%= listStudents[index]["lastname_student"] %></option>
+				<% } %>
+				</select>										
 			</div>
 			<div>
+				<% if( gradesPerStudent.length > 0 ) {%>
+					<% gradesPerStudent.forEach((user, index)=> { %>
+						<div class="grade <%= user.name %> <%= user.lastname %>" id="<%= index %>">
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.name %> <%= user.lastname %></span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade1 %> </span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade2 %></span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade3 %> </span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.gradePerformance1 %> </span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.gradePerformance2 %></span>
+						</div>	
+						<% }); %>
+						
+				<% }%>	
 				<form action="changegrades" method="post">
-				
+					
 				</form>
 			</div>
 		</div>
@@ -27,10 +46,30 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="./socket.js" ></script>
 <script>
-	// let x = document.querySelector(".selectedValue")
-	// x.addEventListener('change', function(e){
-	// 	let escolhido = document.querySelector(".escolhido")
-	// 	escolhido.setAttribute("value", `${e.target.value}`);
-	// }) 
+	let chosenStudent = document.querySelector(".selectedValue")
+	let form = document.querySelector("form")
+	let item = document.querySelectorAll(".grade")
+
+	chosenStudent.addEventListener('change', function(e){
+		form.innerHTML = ""
+		for (let index = 0; index < item.length; index++) {
+			console.log(item[index])
+			if (e.target.value == item[index].firstElementChild.textContent) {
+				console.log("coincide")
+				var str = "<div>\
+				<span>" + item[index].children[0].textContent + "</span>\
+				<span>" + item[index].children[1].textContent+ "</span>\
+				<span>" + item[index].children[2].textContent+ "</span>\
+				<span>" + item[index].children[3].textContent+ "</span>\
+				<span>" + item[index].children[4].textContent+ "</span>\
+				</div>"
+				form.innerHTML += str
+			}	
+		}
+	
+	}) 
+	// console.log(item[0].firstElementChild.textContent) 
+
+
 </script>
 </html>

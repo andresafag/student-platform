@@ -8,21 +8,21 @@ const TeacherInfo = require('../data-access-layer/dbCalls.js').TeacherInfo
 const studentId = require('../data-access-layer/dbCalls.js').getStudentId
 const fs = require('fs');
 const path = require("path"); 
-const { name } = require('ejs')
+
 
 
 exports.teacherindex = function (req,res){
   res.render("teacherView/index");
 }
-
+// ------------------------------------------------------------------------
 exports.teacherlogin = function (req,res){
   res.render("teacherView/teacherlogin");
 }
-
+// ------------------------------------------------------------------------
 exports.viewer = function (req,res){
   res.render("teacherView/viewer");
 }
-
+// ------------------------------------------------------------------------
 exports.dashboard = async function(req,res){
   let teaches = await TeacherInfo(req.user.teacher_username).populate("teaches")  
   let moduleStudentRelationship = []
@@ -72,21 +72,21 @@ exports.dashboard = async function(req,res){
       }
     }
   }
-  console.log(relationStuCourses)
-  console.log(moduleStudentRelationshiprelationStuCourses)
+  console.log(moduleStudentRelationship)
+  // console.log(relationStuCourses[0])
 
-    res.render("teacherView/dashboard" )//, {listStudents:relationStuCourses})
+
+    res.render("teacherView/dashboard", {listStudents:relationStuCourses, gradesPerStudent:moduleStudentRelationship})
 
 }
 
-
-
+// ------------------------------------------------------------------------
 
 exports.messages = function (req,res){
   res.render("teacherView/messages")
 }
 
-
+// ------------------------------------------------------------------------
 exports.getdocuments = function (req,res) {
   let courseFolders = []
   let documents = []
@@ -118,8 +118,7 @@ exports.getdocuments = function (req,res) {
   res.status(200).send(JSON.stringify({docByUsers:documents}));
 }
 
-
-
+// ------------------------------------------------------------------------
 
 exports.getstudents = function (req,res){
   let courseFolders = []
@@ -149,6 +148,7 @@ exports.getstudents = function (req,res){
 }
 
 
+//----------------------------------------------------------------------
 exports.uploadGet = async function(req,res){
   let teacherModules = await TeacherInfo(req.user.teacher_username).populate("teaches")  
     let moduleFolder = []  
@@ -183,15 +183,21 @@ exports.uploadGet = async function(req,res){
 
   // })
 
+//----------------------------------------------------------------------
 
   res.render("teacherView/upload", {folders:moduleFolder})
   // res.send("hey")
 }
 
+//----------------------------------------------------------------------
+
 
 exports.settings = function(req,res){
   res.render("teacherView/settings")
 }
+
+//----------------------------------------------------------------------
+
 
 exports.logout = function(req,res){
   req.session.destroy()
@@ -207,6 +213,8 @@ exports.checkloginteacher = passport.authenticate('local', {
   successRedirect: '/teacherindex',
   failureRedirect: '/teacherlogin'
 })
+
+//----------------------------------------------------------------------
 
 exports.changegrades = async function (req,res){
     console.log(req.body)
