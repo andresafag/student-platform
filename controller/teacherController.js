@@ -1,11 +1,5 @@
 const passport = require('passport')
-const { getModules, getGradesAndModules, getStudentId,getStudentInfo } = require('../data-access-layer/dbCalls.js')
-const getCourses = require('../data-access-layer/dbCalls.js').getCourses
-const studentCourses = require('../data-access-layer/dbCalls.js').studentCourses
-const findStudentByUserName = require('../data-access-layer/dbCalls.js').findStudentByUserName
-const setGrades = require('../data-access-layer/dbCalls.js').setGrades
-const TeacherInfo = require('../data-access-layer/dbCalls.js').TeacherInfo 
-const studentId = require('../data-access-layer/dbCalls.js').getStudentId
+const { getCourses, TeacherInfo, getGradesAndModules, getStudentId,getStudentInfo, studentCourses, findStudentByUserName, setGrades   } = require('../data-access-layer/dbCalls.js')
 const fs = require('fs');
 const path = require("path"); 
 
@@ -72,8 +66,7 @@ exports.dashboard = async function(req,res){
       }
     }
   }
-  console.log(moduleStudentRelationship)
-  // console.log(relationStuCourses[0])
+ 
 
 
     res.render("teacherView/dashboard", {listStudents:relationStuCourses, gradesPerStudent:moduleStudentRelationship})
@@ -101,12 +94,10 @@ exports.getdocuments = function (req,res) {
   courseFolders.forEach(folders=>{
     fs.readdirSync(`${file}${folders}`).forEach(files=>{
       if (files==req.body.moduleSelection) {
-        // console.log(files)
-        fs.readdirSync(`${file}${folders}/${files}`).forEach(userName=>{
+         fs.readdirSync(`${file}${folders}/${files}`).forEach(userName=>{
           if (req.body.userSelection == userName) {
             fs.readdirSync(`${file}${folders}/${files}/${userName}`).forEach(nombre=>{
-              // console.log(nombre)
-              documents.push(nombre)
+               documents.push(nombre)
             })
           }
         })
@@ -126,6 +117,8 @@ exports.getstudents = function (req,res){
   let file = path.join(__dirname, `../uploads/`);
   let filenames = fs.readdirSync(file); 
   
+  console.log("valor a pasar " + req.body.valueModule)
+
   filenames.forEach(file => { 
     courseFolders.push(file)
   });
@@ -169,7 +162,6 @@ exports.uploadGet = async function(req,res){
 
 
 
-
   
   // courseFolders.forEach(folder=>{
     // let folders = fs.readdirSync(`${file}${folder}`)
@@ -186,8 +178,7 @@ exports.uploadGet = async function(req,res){
 //----------------------------------------------------------------------
 
   res.render("teacherView/upload", {folders:moduleFolder})
-  // res.send("hey")
-}
+ }
 
 //----------------------------------------------------------------------
 

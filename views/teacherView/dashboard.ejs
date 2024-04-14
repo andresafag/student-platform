@@ -25,17 +25,17 @@
 				<% if( gradesPerStudent.length > 0 ) {%>
 					<% gradesPerStudent.forEach((user, index)=> { %>
 						<div class="grade <%= user.name %> <%= user.lastname %>" id="<%= index %>">
-							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.name %> <%= user.lastname %></span>
-							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade1 %> </span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.module %></span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade1 %></span> 
 							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade2 %></span>
-							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade3 %> </span>
-							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.gradePerformance1 %> </span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.grade3 %></span>
+							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.gradePerformance1 %></span>
 							<span hidden class="<%= user.name %> <%= user.lastname %>"><%= user.gradePerformance2 %></span>
 						</div>	
 						<% }); %>
 						
 				<% }%>	
-				<form action="changegrades" method="post">
+				<form action="changegrades" class="gradesBox" method="post">
 					
 				</form>
 			</div>
@@ -52,24 +52,35 @@
 
 	chosenStudent.addEventListener('change', function(e){
 		form.innerHTML = ""
-		for (let index = 0; index < item.length; index++) {
-			console.log(item[index])
-			if (e.target.value == item[index].firstElementChild.textContent) {
-				console.log("coincide")
-				var str = "<div>\
-				<span>" + item[index].children[0].textContent + "</span>\
-				<span>" + item[index].children[1].textContent+ "</span>\
-				<span>" + item[index].children[2].textContent+ "</span>\
-				<span>" + item[index].children[3].textContent+ "</span>\
-				<span>" + item[index].children[4].textContent+ "</span>\
+		console.log(item[0].className.split(" ")[1] )
+
+		for (let index = 0; index < 6; index++) {
+			console.log(item[index])			
+			let firstname = item[index].className.split(" ")[1]
+		 	let lastname = item[index].className.split(" ")[2]
+			if (e.target.value == (firstname + " " + lastname)) {
+				let module = item[index].children[0].textContent
+				let grade1 = item[index].children[1].textContent
+				let grade2 = item[index].children[2].textContent
+				let grade3 = item[index].children[3].textContent
+				let gradePerformance1 = item[index].children[4].textContent
+				let gradePerformance2 = item[index].children[5].textContent
+	
+	
+				var str = "<div  class='modulesgrades' >\
+				<h3>" + module.toUpperCase() + "</h3>\
+				<p>" + "Grade 1: " + (grade1.length < 1 ? "none": grade1) + "</p>\
+				<p>" + "Grade 2: " + (grade2.length < 1 ? "none": grade2)  + "</p>\
+				<p>" + "Grade 3: " + (grade3.length < 1 ? "none": grade3)  + "</p>\
+				<p>" + "Grade for performance 1: " + (gradePerformance1.length < 1 ? "none": gradePerformance1) + "</p>\
+				<p>" + "Grade for performance 2: " + (gradePerformance2.length < 1 ? "none": gradePerformance2) + "</p>\
 				</div>"
 				form.innerHTML += str
-			}	
-		}
-	
-	}) 
-	// console.log(item[0].firstElementChild.textContent) 
+			}  
+		} 
 
+	}) 
+ 
 
 </script>
 </html>

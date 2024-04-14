@@ -13,11 +13,11 @@ body {
   background-color: #242121;
 }
 
-
-img {
+.navbar-brand > a > img {
   height: 80px;
   width: 105px;
 }
+
 
 #main-menu {
   position: absolute;
@@ -32,17 +32,16 @@ img {
 }
 
 
+#main-menu li > a > img {
+  height: 50px;
+  width: 50px;
+}
+
 #main-menu li > a > img{
   transition: 1s;
   color: #9f98c8;
 }
-
-
-#main-menu li > a > img:hover {
-  height: 4.2rem;
-  transition: 1s;
-}
-
+ 
 
 #showing-section {
   background-color: #5d82c7;
@@ -300,6 +299,15 @@ form .input {
   display: block;
 }
 
+.gradesBox {
+  margin: auto;
+  padding: 2%;
+  width: fit-content;
+  height: fit-content;
+}
+ 
+
+ 
 /*helpers*/
 
 .font-info {
@@ -320,6 +328,14 @@ form .input {
 .margin-left {
   margin-left: 20%;
 }
+
+#universityname {
+  font-family: "Lucida Console", "Courier New", monospace;
+  color: rgb(64, 124, 177);
+  font-size: 60px;
+  font-weight: 600;
+}
+
 
 
 .showIt {

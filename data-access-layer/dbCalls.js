@@ -10,6 +10,10 @@ function getGradesAndModules (moduleId) {
       return Grade.find({module:moduleId})
 }
 
+function getGradesAndModulesForStudennt (studentId) {
+      return Grade.find({student:studentId})
+}
+
 
 function getStudentId (studentUsername) {
       return Student.find({username:studentUsername})
@@ -85,4 +89,4 @@ exports.TeacherInfo = TeacherInfo
 exports.getModulesOfAParticularStudent = getModulesOfAParticularStudent
 exports.getStudentId = getStudentId
 exports.getStudentInfo = getStudentInfo
-
+exports.getGradesAndModulesForStudennt = getGradesAndModulesForStudennt

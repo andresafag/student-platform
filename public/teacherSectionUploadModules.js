@@ -11,11 +11,11 @@ let selection = document.querySelector('#module-selection')
 				return data.json()
 			}).then((datos)=>{
 				if (datos["reply"].length > 0) {
+					let students = document.querySelector('.studentsWhoUploadedFiles')
+					students.innerHTML = ""
 					let selectTag = document.createElement('select')
 					selectTag.addEventListener("change", getDocuments)
-					let students = document.querySelector('.studentsWhoUploadedFiles')
 					document.querySelector(".uploadedFiles").innerHTML = ""
-					students.innerHTML = ""
 					students.innerHTML+= `<p>Choose a student</p>`
 					students.append(selectTag)
 					selectTag.innerHTML += `<option></option>`
@@ -23,6 +23,11 @@ let selection = document.querySelector('#module-selection')
 						selectTag.innerHTML += `<option>${datos["reply"][index]}</option>`	
 					}
 					
+				} else {
+					let students = document.querySelector('.studentsWhoUploadedFiles')
+					students.innerHTML = ""
+					document.querySelector(".uploadedFiles").innerHTML = ""
+					students.innerHTML+= `<p>This module has not uploaded task</p>`
 				}
 			})
 		})
