@@ -35,8 +35,8 @@
 						<% }); %>
 						
 				<% }%>	
-				<form action="changegrades" class="gradesBox" method="post">
-					
+				<form action="/changegrades" class="gradesBox" method="POST">
+
 				</form>
 			</div>
 		</div>
@@ -52,10 +52,8 @@
 
 	chosenStudent.addEventListener('change', function(e){
 		form.innerHTML = ""
-		console.log(item[0].className.split(" ")[1] )
-
-		for (let index = 0; index < 6; index++) {
-			console.log(item[index])			
+		
+		for (let index = 0; index < item.length; index++) {
 			let firstname = item[index].className.split(" ")[1]
 		 	let lastname = item[index].className.split(" ")[2]
 			if (e.target.value == (firstname + " " + lastname)) {
@@ -65,22 +63,24 @@
 				let grade3 = item[index].children[3].textContent
 				let gradePerformance1 = item[index].children[4].textContent
 				let gradePerformance2 = item[index].children[5].textContent
-	
-	
+				let completeName=firstname +"_" +lastname	
 				var str = "<div  class='modulesgrades' >\
 				<h3>" + module.toUpperCase() + "</h3>\
-				<p>" + "Grade 1: " + (grade1.length < 1 ? "none": grade1) + "</p>\
-				<p>" + "Grade 2: " + (grade2.length < 1 ? "none": grade2)  + "</p>\
-				<p>" + "Grade 3: " + (grade3.length < 1 ? "none": grade3)  + "</p>\
-				<p>" + "Grade for performance 1: " + (gradePerformance1.length < 1 ? "none": gradePerformance1) + "</p>\
-				<p>" + "Grade for performance 2: " + (gradePerformance2.length < 1 ? "none": gradePerformance2) + "</p>\
+				<input hidden type='text' name="+ completeName +" >\
+				<input hidden type='text' name="+ module +" >\
+				<p>" + "Grade 1: " + (grade1.length < 1 ? '<input size="1" name="grade1_' + module +'">' : grade1) + "</p>\
+				<p>" + "Grade 2: " + (grade2.length < 1 ? '<input size="1" name="grade2_' + module +'">': grade2)  + "</p>\
+				<p>" + "Grade 3: " + (grade3.length < 1 ? '<input size="1" name="grade3' + module +'">': grade3)  + "</p>\
+				<p>" + "Grade for performance 1: " + (gradePerformance1.length < 1 ? '<input name="performance1_' + module +'" >': gradePerformance1) + "</p>\
+				<p>" + "Grade for performance 2: " + (gradePerformance2.length < 1 ? '<input name="performance2_' + module +'" >': gradePerformance2) + "</p>\
 				</div>"
 				form.innerHTML += str
 			}  
 		} 
-
+		
+		let submitBtn = '<input type="submit" value="Send">'
+		form.innerHTML+=submitBtn
 	}) 
  
-
 </script>
 </html>

@@ -68,7 +68,6 @@ exports.dashboard = async function(req,res){
   }
  
 
-
     res.render("teacherView/dashboard", {listStudents:relationStuCourses, gradesPerStudent:moduleStudentRelationship})
 
 }
@@ -209,11 +208,11 @@ exports.checkloginteacher = passport.authenticate('local', {
 
 exports.changegrades = async function (req,res){
     console.log(req.body)
-    let student = ""
-    for (let index = 0; index < req.body.studentChosen.length; index++) {
-      req.body.studentChosen[index].length > 0 ? student=req.body.studentChosen[index] :  {} 
-    }
-    console.log(student)
+    // let student = ""
+    // for (let index = 0; index < req.body.studentChosen.length; index++) {
+    //   req.body.studentChosen[index].length > 0 ? student=req.body.studentChosen[index] :  {} 
+    // }
+    // console.log(student)
 
 
 

@@ -43,12 +43,12 @@ let moduleSchema = new mongoose.Schema({
 let gradeSchema = new mongoose.Schema({
   student:{type:mongoose.Schema.Types.ObjectId, ref:'Student'},
   module:{type:mongoose.Schema.Types.ObjectId, ref:'Module'},
-  gradeExam1:Number,
-  gradeExam2:Number,
-  gradeExam3:Number,
-  gradePerformance1:Number,
-  gradePerformance2:Number,
-  additionalGrades:[Number],
+  gradeExam1:{type:Number, default: null},
+  gradeExam2:{type:Number, default: null},
+  gradeExam3:{type:Number, default: null},
+  gradePerformance1:{type:Number, default: null},
+  gradePerformance2:{type:Number, default: null},
+  additionalGrades:[{type:Number, default: null}],
 })
 
 
