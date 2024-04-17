@@ -1,5 +1,5 @@
 const passport = require('passport')
-const { getCourses, TeacherInfo, getGradesAndModules, getStudentId,getStudentInfo, studentCourses, findStudentByUserName, setGrades   } = require('../data-access-layer/dbCalls.js')
+const { getCourses, TeacherInfo, getGradesAndModules, getStudentIdByStudentFullname ,getStudentId,getStudentInfo, studentCourses, findStudentByUserName, setGrades, getModuleId   } = require('../data-access-layer/dbCalls.js')
 const fs = require('fs');
 const path = require("path"); 
 
@@ -12,11 +12,15 @@ exports.teacherindex = function (req,res){
 exports.teacherlogin = function (req,res){
   res.render("teacherView/teacherlogin");
 }
+
 // ------------------------------------------------------------------------
+
 exports.viewer = function (req,res){
   res.render("teacherView/viewer");
 }
+
 // ------------------------------------------------------------------------
+
 exports.dashboard = async function(req,res){
   let teaches = await TeacherInfo(req.user.teacher_username).populate("teaches")  
   let moduleStudentRelationship = []
@@ -104,7 +108,6 @@ exports.getdocuments = function (req,res) {
     })
   })
 
-  console.log(documents)
   res.status(200).send(JSON.stringify({docByUsers:documents}));
 }
 
@@ -207,50 +210,20 @@ exports.checkloginteacher = passport.authenticate('local', {
 //----------------------------------------------------------------------
 
 exports.changegrades = async function (req,res){
-    console.log(req.body)
-    // let student = ""
-    // for (let index = 0; index < req.body.studentChosen.length; index++) {
-    //   req.body.studentChosen[index].length > 0 ? student=req.body.studentChosen[index] :  {} 
-    // }
-    // console.log(student)
-
-
-
-  
-  // Below we catch the student's id
-  // let chosen = await findStudentByUserName(req.body.studentChosen)
-  // // Here we get the modules the teacher teaches
-  // let teacherInfo = await TeacherInfo(req.user.teacher_username)
-  // let teacherModules = []
-  
-  // teacherInfo.teaches.forEach(element => {
-  //   teacherModules.push(element)           
-  // });
-
-  // console.log("this is the course the student is enrolled in: ",chosen["currentCourse"][0].course_name)
-  // console.log("this is the student username: ", chosen["username"])
-  // console.log("this is the student id: ", chosen["_id"])
-  // console.log("These are the teacher modules: " + teacherModules)
-
-  // Now we look for a match between the student's id and any of the modules this teacher teaches
-  // for (let index = 0; index < teacherModules.length; index++) {
-  //   let calificaciones = await setGrades(
-  //     chosen["_id"], 
-  //     teacherModules[index], 
-  //     req.body.grade1[index], 
-  //     req.body.grade2[index], 
-  //     req.body.grade3[index], 
-  //     req.body.gradeper1[index], 
-  //     req.body.gradeper2[index], 
-  //     req.body.gradeper3[index],
-  //     req.body.additionalGrades 
-  //     )     
-  // }
+    let fullName = Object.keys(req.body)[0].split("_")
+    let result = await getStudentIdByStudentFullname(fullName[0],fullName[1])
  
-  // console.log(calificaciones["lastErrorObject"]["updatedExisting"])
-  // console.log(calificaciones) 
-  // await res.send("Successfully sent")
-  res.send("hello")
+    Object.keys(req.body).forEach(async (key) => {
+      const value = req.body[key];
+      if (key.includes("grade") || key.includes("performance" )) {
+        let grade = key.split("_")[0]
+        let moduleName = await getModuleId(key.split("_")[1]) 
+        let valueOfGrade = value
+        await setGrades(result[0]["_id"],moduleName,grade,valueOfGrade)
+      }
+  });
+ 
+  await res.send("Successfully sent")
 }
 
 

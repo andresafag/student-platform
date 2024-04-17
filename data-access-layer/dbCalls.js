@@ -10,6 +10,10 @@ function getGradesAndModules (moduleId) {
       return Grade.find({module:moduleId})
 }
 
+function getModuleId (module_name) {
+      return Module.findOne({module_name:module_name})
+}
+
 function getGradesAndModulesForStudennt (studentId) {
       return Grade.find({student:studentId})
 }
@@ -25,6 +29,10 @@ function getStudentInfo (studentId) {
 
 function getModules (moduleId) {
       return Module.findById(moduleId)
+}
+
+function getStudentIdByStudentFullname (name,lastName) {
+      return Student.find({name:name,lastName:lastName})
 }
 
 
@@ -54,23 +62,13 @@ function findStudentByUserName(studentId) {
       return Student.findOne({username:studentId})
 }
 
-function setGrades(studentUsername, teacherModules, grade1, grade2, grade3, performGrade1, performGrade2, performGrade3, additionalGrades) {
-      let filter = {student:studentUsername, module:teacherModules}
-      let update = {
-            gradeExam1:grade1, 
-            gradeExam2:grade2, 
-            gradeExam3:grade3, 
-            gradePerformance1:performGrade1, 
-            gradePerformance2:performGrade2, 
-            gradePerformance3:performGrade3,
-            $push:{additionalGrades:additionalGrades} 
-      }
+function setGrades(studentId,moduleName,grade,value) {
+      return Grade.findOneAndUpdate({student:studentId,module:moduleName["_id"]},{[`${grade}`]:value}, {
+                  new: true,
+                  upsert: true,
+                  rawResult: true // Return the raw result from the MongoDB driver
+                })
 
-      return Grade.findOneAndUpdate(filter, update, {
-            new: true,
-            upsert: true,
-            rawResult: true // Return the raw result from the MongoDB driver
-          })
 }
 
 
@@ -90,3 +88,6 @@ exports.getModulesOfAParticularStudent = getModulesOfAParticularStudent
 exports.getStudentId = getStudentId
 exports.getStudentInfo = getStudentInfo
 exports.getGradesAndModulesForStudennt = getGradesAndModulesForStudennt
+exports.getStudentIdByStudentFullname = getStudentIdByStudentFullname
+exports.getModuleId = getModuleId
+ 

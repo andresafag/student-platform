@@ -263,21 +263,23 @@ form .input {
 /* Dashboard styles --------------------------------------------------------------- */
 
 #courses-section {
-  border: 1px solid red;
   height: 100%;
   width: 100%;
   position: relative;
 }
 
 #course-details, #modules  {
-  border: 1px solid blue;
+  box-shadow: rgba(46, 15, 224, 0.16) 0px 1px 4px, rgb(17, 104, 218) 0px 0px 0px 3px;
   padding: 1%;
   text-align: center;
-  margin: 10px;
+  margin: auto auto 10px auto;
+  width: 50%;
+  color: lightcyan;
 }
 
 #course-details h2, #modules h2:first-child  {
   font-size: 25px;
+  color: darkslateblue;
 }
 
 
