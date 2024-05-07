@@ -20,10 +20,19 @@ let selection = document.querySelector('#module-selection')
 					students.append(selectTag)
 					selectTag.innerHTML += `<option></option>`
 					for (let index = 0; index < datos["reply"].length; index++) {
-						selectTag.innerHTML += `<option>${datos["reply"][index]}</option>`	
+						selectTag.innerHTML += `<option>${datos["reply"][index]}</option>`
+						console.log(`este es el dato ${datos["reply"][index]} y el valor ${selection.value}`)	
+					}
+					if (window.WebViewer.getInstance()) {
+						window.WebViewer.getInstance().dispose()
+						document.querySelector("#viewer").innerHTML=""
 					}
 					
 				} else {
+					if (window.WebViewer.getInstance()) {
+						window.WebViewer.getInstance().dispose()
+						document.querySelector("#viewer").innerHTML=""
+					}
 					let students = document.querySelector('.studentsWhoUploadedFiles')
 					students.innerHTML = ""
 					document.querySelector(".uploadedFiles").innerHTML = ""
@@ -44,14 +53,20 @@ let selection = document.querySelector('#module-selection')
 			}).then((data)=>{
 				return data.json()
 			}).then(data=>{
-				console.log(data["docByUsers"])
+				if (window.WebViewer.getInstance()) {
+					window.WebViewer.getInstance().dispose()
+				}	
+		
+					let viewer = document.querySelector("#viewer").innerHTML=""				
 				let uploadedFiles =  document.querySelector(".uploadedFiles")
 				uploadedFiles.classList.add("uploadedFilesStyles")
+				uploadedFiles.classList.add("getItemSelected")
 				uploadedFiles.innerHTML=""
 				uploadedFiles.innerHTML += `<p>These are the documents uploaded the above student</p>`
 				data["docByUsers"].forEach(doc => {
-					console.log(doc.split("-")[0])
-					uploadedFiles.innerHTML += `<div><h2>${doc.split("-")[0]}</h2><p>${doc.split("-")[1]}</p></div>`
+
+					uploadedFiles.innerHTML += `<div onclick="openViewer(this)" class="${doc.split("-")[0]}-${doc.split("-")[1]}-${doc.split("-")[2]}--${doc.split("-")[3]}-${doc.split("-")[4]}--${doc.split("-")[5]}--${doc.split("-")[6]}--${doc.split("-")[7]}" ><h2>${doc.split("-")[4]}</h2><p>${doc.split("-")[5]}</p><p>${doc.split("-")[6]}</p><p>${doc.split("-")[7]}</p></div>`
 				});
 			})
 		}
+

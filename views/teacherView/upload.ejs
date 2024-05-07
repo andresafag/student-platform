@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<script src="https:kit.fontawesome.com/8b8b86760e.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https:cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<script src="./PDFJSExpress-view-only/lib/webviewer.min.js"></script>
 	<link rel="stylesheet" href="./styles.css">
 	<title>Upload page</title>
 </head>
@@ -34,10 +35,42 @@
 		<div class="uploadedFiles"></div>
 		</div>
 
+		<div id="viewer-container">
+			<div id='viewer' style="width:1024px;height:600px;margin:0 auto"></div>	
+		</div>
+
 	</div>
 	<%-	include('../components/footer'); %>
 	<script src="./teacherSectionUploadModules.js"></script>
 	<script src="./attached_teachers.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="./socket.js" ></script>
+	<script>
+			function openViewer(e) {
+			if (window.WebViewer.getInstance()) {
+				window.WebViewer.getInstance().dispose()
+			}	
+
+			let viewer = document.querySelector("#viewer").innerHTML=""
+
+		 	let fileToLookFor = e.classList.value.replace(/\<h2\>|\<\/h2\>|\<p\>/g, '-').replace(/\<\/p\>/g,'').replaceAll(/\-/g, '/').replaceAll(/\/\//g, '-')
+			WebViewer({
+		    path: './PDFJSExpress-view-only/lib',  
+		    licenseKey: 'RcYxl4ZzPRQ1zWYfyDVh',
+		    initialDoc: `./uploads/${fileToLookFor}`,
+		  	}, document.getElementById('viewer'))
+		  	.then(instance => {
+		    const { Core, UI } = instance;
+		    UI.setTheme("dark")	
+		    console.log(instance)
+			Core.documentViewer.addEventListener('documentLoaded', () => {
+		  	console.log('document loaded');
+		    });
+	  
+		    Core.documentViewer.addEventListener('pageNumberUpdated', (pageNumber) => {
+		  	console.log(`Page number is: ${pageNumber}`);
+		    });
+		  });
+		  console.log(WebViewer)
+			}
+
+	  </script>
 </html>

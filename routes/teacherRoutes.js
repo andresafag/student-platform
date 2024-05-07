@@ -8,7 +8,7 @@ const express = require('express'),
 router.get('/teacherlogin', teacherController.teacherlogin)
 .get('/teacherdashboard', checkAuthenticationTeacher, teacherController.dashboard)
 .get('/teacherindex', checkAuthenticationTeacher,  teacherController.teacherindex)
-.get('/viewer', checkAuthenticationTeacher,  teacherController.viewer)
+.post('/getviewerdoc', checkAuthenticationTeacher,  teacherController.getviewerdoc)
 .post('/getstudents', checkAuthenticationTeacher,  teacherController.getstudents)
 .post('/getdocuments', checkAuthenticationTeacher,  teacherController.getdocuments)
 .get('/teachermessages', checkAuthenticationTeacher, teacherController.messages)

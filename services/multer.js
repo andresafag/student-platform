@@ -30,19 +30,19 @@ const storage = Multer.diskStorage({
     let lastName = req.user.lastName.toLowerCase()
     let mods = req.body["mods"]
 
-    if (!fs.existsSync(`./uploads/${course}/`)) {
-      fs.mkdirSync(path.join(__dirname, `../uploads/${course}/`));  
+    if (!fs.existsSync(`./public/uploads/${course}/`)) {
+      fs.mkdirSync(path.join(__dirname, `../public/uploads/${course}/`));  
     } 
  
-    if (!fs.existsSync(`./uploads/${course}/${mods}/`)) {
-      fs.mkdirSync(path.join(__dirname, `../uploads/${course}/${mods}/`));
+    if (!fs.existsSync(`./public/uploads/${course}/${mods}/`)) {
+      fs.mkdirSync(path.join(__dirname, `../public/uploads/${course}/${mods}/`));
     }
     
-    if (!fs.existsSync(`./uploads/${course}/${mods}/${name}-${lastName}/`)) {
-      fs.mkdirSync(path.join(__dirname, `../uploads/${course}/${mods}/${name}-${lastName}/`));
+    if (!fs.existsSync(`./public/uploads/${course}/${mods}/${name}-${lastName}/`)) {
+      fs.mkdirSync(path.join(__dirname, `../public/uploads/${course}/${mods}/${name}-${lastName}/`));
     }
     
-    cb(null, `./uploads/${course}/${mods}/${name}-${lastName}/`)
+    cb(null, `./public/uploads/${course}/${mods}/${name}-${lastName}/`)
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)

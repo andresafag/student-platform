@@ -83,13 +83,18 @@ exports.messages = function (req,res){
 }
 
 // ------------------------------------------------------------------------
-exports.getdocuments = function (req,res) {
+exports.getdocuments = async function (req,res) {
+  let teaches = await TeacherInfo(req.user.teacher_username).populate("teaches")
+
+  // console.log(teaches["teaches"].length)
+
   let courseFolders = []
   let documents = []
-  let file = path.join(__dirname, `../uploads/`);
+  let file = path.join(__dirname, `../public/uploads/`);
   let filenames = fs.readdirSync(file); 
   
   filenames.forEach(file => { 
+    console.log(file)
     courseFolders.push(file)
   });
 
@@ -100,7 +105,7 @@ exports.getdocuments = function (req,res) {
          fs.readdirSync(`${file}${folders}/${files}`).forEach(userName=>{
           if (req.body.userSelection == userName) {
             fs.readdirSync(`${file}${folders}/${files}/${userName}`).forEach(nombre=>{
-               documents.push(nombre)
+               documents.push(`${folders}-${files}-${userName}-${nombre}`)
             })
           }
         })
@@ -116,7 +121,7 @@ exports.getdocuments = function (req,res) {
 exports.getstudents = function (req,res){
   let courseFolders = []
   let users = []
-  let file = path.join(__dirname, `../uploads/`);
+  let file = path.join(__dirname, `../public/uploads/`);
   let filenames = fs.readdirSync(file); 
   
   console.log("valor a pasar " + req.body.valueModule)
@@ -136,10 +141,18 @@ exports.getstudents = function (req,res){
     })
   })
 
-  console.log(users)
-
-
   res.status(200).send(JSON.stringify({reply:users}));
+}
+
+
+exports.getviewerdoc = function (req,res) {
+  let file = path.join(__dirname, `../public/uploads/`);
+  console.log(`${file}${req.body.path}`)
+  
+  fs.readdirSync(`${file}`).forEach(file=>{
+    console.log(file)
+  })
+
 }
 
 
@@ -155,27 +168,7 @@ exports.uploadGet = async function(req,res){
     moduleFolder.push(teacherModules["teaches"][index]["module_name"])
   }
 
-  // let file = path.join(__dirname, `../uploads/`); 
-  // let filenames = fs.readdirSync(file); 
-  
-  // filenames.forEach(file => { 
-  //   courseFolders.push(file)
-  // });
 
-
-
-  
-  // courseFolders.forEach(folder=>{
-    // let folders = fs.readdirSync(`${file}${folder}`)
-    // // moduleFolder = folders
-    // console.log(folders)
-    // for (let index = 0; index < moduleFolder.length; index++) {
-    //   console.log("esta es la carpeta " + moduleFolder)
-      
-    // }
-
-
-  // })
 
 //----------------------------------------------------------------------
 
