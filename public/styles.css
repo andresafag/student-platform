@@ -11,6 +11,8 @@ body {
 .navbar {
   padding: 1% 0 1% 0;
   background-color: #242121;
+  background: linear-gradient(to bottom, black 80%, #5d82c7 20%);
+  height: 15vh;
 }
 
 .navbar-brand > a > img {
@@ -46,9 +48,18 @@ body {
 #showing-section {
   background-color: #5d82c7;
   padding: 5%;
-  min-height: 80vh;
+  min-height: 90vh;
   width: 100%;
 }
+
+#welcome {
+  text-align: center;
+} 
+
+#welcome div a>img{
+  height: 150px;
+  width: auto;
+} 
 
 .button {
   background-color: #260894;
@@ -111,7 +122,7 @@ form .input {
   text-align: center;
   border: 1px solid #e7eef065;
   border-radius: 2%;
-  width: 40%;
+  width: 45%;
   height: auto;
   margin: auto;
 }
@@ -129,7 +140,7 @@ form .input {
   color: #000000;
 }
 
-.title-box label,.recipients-box label,.select-file label {
+.title-box label,.recipients-box label,.select-file label,.select-file input,.select-module label {
   font-weight: bolder;
 }
 
@@ -143,18 +154,12 @@ form .input {
 }
 
 
-/* #selectionOfModules { */
-  /* text-align: center; */
-  /* width: 80%; */
-  /* min-height: 100px; */
-  /* margin: auto; */
-  /* border: 1px solid aliceblue; */
-  /* padding: 2%; */
-  /* color: #000000; */
-/* } */
-
 .title-box,.recipients-box,.select-file {
   margin: 4%;
+} 
+
+.title-box input {
+  width: 80%;
 } 
 
 .studentsWhoUploadedFiles, .uploadedFilesStyles, #selectionOfModules {
@@ -308,8 +313,6 @@ form .input {
   height: fit-content;
 }
  
-
- 
 /*helpers*/
 
 .font-info {
@@ -338,8 +341,6 @@ form .input {
   font-weight: 600;
 }
 
-
-
 .showIt {
   display: none;
 }
@@ -352,6 +353,10 @@ footer {
   height: 80px;
   width: 100%;
   padding: 2%;
+}
+
+.margin-top { 
+  margin-top: 20px;
 }
 
 #social-media-container ul li {
@@ -370,3 +375,8 @@ footer {
 }
 
 
+@media only screen and (max-width: 800px) {
+  #universityname {
+    display: none;
+  }
+}

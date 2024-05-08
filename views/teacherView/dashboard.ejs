@@ -1,5 +1,5 @@
  <!DOCTYPE html>
-<html lang="sp">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,9 +42,9 @@
 		</div>
 	</div>
 	<%-	include('../components/footer'); %>
-<script src="./attached_teachers.js"></script>
+<script src="./jsFiles/attached_teachers.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="./socket.js" ></script>
+<script src="./jsFiles/socket.js" ></script>
 <script>
 	let chosenStudent = document.querySelector(".selectedValue")
 	let form = document.querySelector("form")
@@ -77,7 +77,7 @@
 			}  
 		} 
 		
-		let submitBtn = '<input type="submit" value="Send">'
+		let submitBtn = '<input type="submit" class="button is-link is-rounded" value="Send">'
 		let checkInputs = document.querySelector(".gradesClass") 
 		if (checkInputs.disabled == false) {
     		form.innerHTML+=submitBtn

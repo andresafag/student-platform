@@ -57,7 +57,7 @@ let selection = document.querySelector('#module-selection')
 					window.WebViewer.getInstance().dispose()
 				}	
 		
-					let viewer = document.querySelector("#viewer").innerHTML=""				
+				let viewer = document.querySelector("#viewer").innerHTML=""				
 				let uploadedFiles =  document.querySelector(".uploadedFiles")
 				uploadedFiles.classList.add("uploadedFilesStyles")
 				uploadedFiles.classList.add("getItemSelected")

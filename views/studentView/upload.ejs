@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sp">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
 		<form id="uploading" action="download" method="POST" enctype="multipart/form-data">	
 			<div class="title-box">
 				<label class="font-title" for="title">Name of the document</label>
-				<input name="title" id="title" type="text">	
+				<input name="title" type="text">	
 			</div>
 			<div class="recipients-box">
 				<label for="message" class="font-title">Write message to the teacher</label>
@@ -26,7 +26,7 @@
 			</div>  
 			<div class="select-file">
 				<label for="uploadFile" class="font-title">Select a file</label>
-				<input id="file" type="file" name="uploadFile" required>	
+				<input id="file" type="file" name="uploadFile" placeholder="" required>	
 			</div>	
 			<div class="select-module">
 				<label for="module" class="font-title">Select the module</label>
@@ -36,7 +36,7 @@
 				  <% } %>
 				</select>
 			</div>		
-			<button class="button is-light" name="submit">Upload</button>
+			<button class="button is-rounded margin-top" name="submit">Upload</button>
  	</form>
 	</div>
 	<%-	include('../components/footer'); %>
@@ -71,7 +71,7 @@
         })
     })
 	</script>
-	<script src="./attached.js"></script>
+	<script src="./jsFiles/attached.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="./socket.js" ></script>
+	<script src="./jsFiles/socket.js" ></script>
 </html>

@@ -4,5 +4,4 @@ const express = require('express'),
 
 router.get('/', generalController.welcome)
 
-
 module.exports = router

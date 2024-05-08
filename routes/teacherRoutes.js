@@ -1,6 +1,5 @@
 const express = require('express'),
 	  router = express.Router(),
-	  {upload} = require('../services/multer.js'),
 	  checkAuthenticationTeacher = require('../services/passport-users.js').checkAuthenticationTeacher,
 	  teacherController = require('../controller/teacherController.js')
 
@@ -8,7 +7,6 @@ const express = require('express'),
 router.get('/teacherlogin', teacherController.teacherlogin)
 .get('/teacherdashboard', checkAuthenticationTeacher, teacherController.dashboard)
 .get('/teacherindex', checkAuthenticationTeacher,  teacherController.teacherindex)
-.post('/getviewerdoc', checkAuthenticationTeacher,  teacherController.getviewerdoc)
 .post('/getstudents', checkAuthenticationTeacher,  teacherController.getstudents)
 .post('/getdocuments', checkAuthenticationTeacher,  teacherController.getdocuments)
 .get('/teachermessages', checkAuthenticationTeacher, teacherController.messages)

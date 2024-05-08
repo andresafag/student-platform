@@ -1,5 +1,5 @@
 const passport = require('passport')
-const { getCourses, TeacherInfo, getGradesAndModules, getStudentIdByStudentFullname ,getStudentId,getStudentInfo, studentCourses, findStudentByUserName, setGrades, getModuleId   } = require('../data-access-layer/dbCalls.js')
+const { getCourses, TeacherInfo, getGradesAndModules, getStudentIdByStudentFullname, studentCourses, setGrades, getModuleId } = require('../data-access-layer/dbCalls.js')
 const fs = require('fs');
 const path = require("path"); 
 
@@ -11,12 +11,6 @@ exports.teacherindex = function (req,res){
 // ------------------------------------------------------------------------
 exports.teacherlogin = function (req,res){
   res.render("teacherView/teacherlogin");
-}
-
-// ------------------------------------------------------------------------
-
-exports.viewer = function (req,res){
-  res.render("teacherView/viewer");
 }
 
 // ------------------------------------------------------------------------
@@ -144,19 +138,8 @@ exports.getstudents = function (req,res){
   res.status(200).send(JSON.stringify({reply:users}));
 }
 
-
-exports.getviewerdoc = function (req,res) {
-  let file = path.join(__dirname, `../public/uploads/`);
-  console.log(`${file}${req.body.path}`)
-  
-  fs.readdirSync(`${file}`).forEach(file=>{
-    console.log(file)
-  })
-
-}
-
-
 //----------------------------------------------------------------------
+
 exports.uploadGet = async function(req,res){
   let teacherModules = await TeacherInfo(req.user.teacher_username).populate("teaches")  
     let moduleFolder = []  

@@ -4,9 +4,6 @@ const express = require('express'),
 			checkAuthentication = require('../services/passport-users.js').checkAuthenticationStudent,
 			studentController = require('../controller/studentController.js')
 
-
-
-
 router.get('/studentIndex', checkAuthentication, studentController.index)
 .get('/studentlogin', studentController.studentlogin)
 .get('/dashboard', checkAuthentication, studentController.dashboard)
@@ -16,8 +13,6 @@ router.get('/studentIndex', checkAuthentication, studentController.index)
 .post('/download', checkAuthentication, upload.single('uploadFile'), studentController.upload)
 .post('/checkLogin', studentController.checklogin)
 .get('/out', checkAuthentication, studentController.logout);
-
-
 
 module.exports = router
 

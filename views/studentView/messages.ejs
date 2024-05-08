@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sp">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +21,14 @@
 				<label class="font-title">Send message to <i class="fa-solid fa-arrow-up"></i><span class="username"></span></label>
 				<input id="input-text" type="text">
 				<label class="font-title">Or to everyone in the chatbox</label>
-				<button class="btnbrdcast font-title">Everyone</button>
+				<button class="btnbrdcast button is-rounded">Everyone</button>
 			</div>
 		</div>
-		<div id="msgBubble"><img src="./messages.png"></div>
+		<div id="msgBubble"><img src="./images/messages.png"></div>
 		<div id="showMsgs" class="showIt"></div>
 		<div id="notification" class="showIt"></div>
 		<%-	include('../components/footer'); %>
-<script src="./attached.js"></script>
+<script src="./jsFiles/attached.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="./socket.js" ></script>
+<script src="./jsFiles/socket.js" ></script>
 </html>

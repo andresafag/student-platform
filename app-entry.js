@@ -12,17 +12,13 @@ const express = require('express'),
       server = require('http').createServer(app),
       io = require("socket.io")(server),
       MongoStore = require('connect-mongo'),
-      addStudentsToSpecificCourses = require('./socketLogic.js').addStudentsToSpecificCourses,
-      sendMsg = require('./socketLogic.js').sendMsg,
-      connectedUsers = require('./socketLogic.js').connectedUsers,
-      disconnectedUsers = require('./socketLogic.js').disconnectedUsers,
+      addStudentsToSpecificCourses = require('./services/socketLogic.js').addStudentsToSpecificCourses,
+      sendMsg = require('./services/socketLogic.js').sendMsg,
+      connectedUsers = require('./services/socketLogic.js').connectedUsers,
+      disconnectedUsers = require('./services/socketLogic.js').disconnectedUsers,
       pushMessages = require('./services/redis.js').pushMessages,
       messagesCollections = require('./services/redis.js').messagesCollections,
       pushMsgToAll = require('./services/redis.js').pushMsgToAll
-      
-
-
-
 
 const sessionMiddleware = session({
   secret: 'catty',
@@ -112,30 +108,3 @@ io.on('connection', (socket) => {
 server.listen(app.get('port'), ()=>{
   console.log("connected to port ", app.get('port'));
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-

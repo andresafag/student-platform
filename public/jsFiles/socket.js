@@ -11,7 +11,6 @@ let counter = 0
 const dayNames = ["Monday", "Tuesday", "wednesday", "Thursday", "Friday", "Saturday","Sunday"];
 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-
 //socket activates whenever any user either comes in or out passing the connected users array
 socket.on('pass connected users', (userConnected)=> {
     //we empty the box with users coneonnected to render the new connected users
