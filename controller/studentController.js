@@ -13,6 +13,10 @@ exports.studentlogin = function(req, res){
   res.render("studentView/studentlogin");
 }
 
+exports.studentloginfailure = function(req, res){
+  res.render("studentView/studentloginfailure");
+}
+
 // ------------------------------------------------------------------------
 
 
@@ -88,6 +92,6 @@ exports.upload = function (req,res){
 
 exports.checklogin = passport.authenticate('local', {
   successRedirect: '/studentIndex',
-  failureRedirect: '/studentlogin'
+  failureRedirect: '/studentloginfailure'
 })
 

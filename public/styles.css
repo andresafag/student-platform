@@ -11,13 +11,13 @@ body {
 .navbar {
   padding: 1% 0 1% 0;
   background-color: #242121;
-  background: linear-gradient(to bottom, black 80%, #5d82c7 20%);
+  background: linear-gradient(to bottom, black 55%, #5d82c7 45%);
   height: 15vh;
 }
 
 .navbar-brand > a > img {
-  height: 80px;
-  width: 105px;
+  height: 130px;
+  width: 130px;
 }
 
 
@@ -56,8 +56,18 @@ body {
   text-align: center;
 } 
 
+#welcome div {
+  display: inline-block;
+  margin: 50px;
+  padding: 1%;
+} 
+
+#welcome div:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
 #welcome div a>img{
-  height: 150px;
+  height: 300px;
   width: auto;
 } 
 
@@ -94,7 +104,7 @@ form .input {
 
 #mission,#vision {
   border: 1px solid #000000;
-  max-width: 400px;
+  width: 600px;
   height: auto;
   border-radius: 1.5%;
   margin: auto auto 10px auto;
@@ -102,6 +112,7 @@ form .input {
   padding: 4%;
   background-color: antiquewhite;
   font-family: 'Roboto Mono', monospace;
+  line-height: 250%;
 }
 
 #mission h1,#vision h1 {
@@ -216,6 +227,7 @@ form .input {
 #showing-section h3 {
   font-weight: bolder;
   font-size: 40px;
+  color: #000000;
 }
 
 
@@ -243,8 +255,8 @@ form .input {
   border-radius: 5px;
   background-color: rgb(227, 227, 241);
   position: absolute;
-  right: 35px;
-  bottom: 200px;
+  right: 50px;
+  bottom: 250px;
 }
 
 

@@ -16,7 +16,7 @@ let selection = document.querySelector('#module-selection')
 					let selectTag = document.createElement('select')
 					selectTag.addEventListener("change", getDocuments)
 					document.querySelector(".uploadedFiles").innerHTML = ""
-					students.innerHTML+= `<p>Choose a student</p>`
+					students.innerHTML+= `<p style="font-size: 30px;">Choose a student</p>`
 					students.append(selectTag)
 					selectTag.innerHTML += `<option></option>`
 					for (let index = 0; index < datos["reply"].length; index++) {
@@ -62,7 +62,7 @@ let selection = document.querySelector('#module-selection')
 				uploadedFiles.classList.add("uploadedFilesStyles")
 				uploadedFiles.classList.add("getItemSelected")
 				uploadedFiles.innerHTML=""
-				uploadedFiles.innerHTML += `<p>These are the documents uploaded the above student</p>`
+				uploadedFiles.innerHTML += `<p>These are the documents uploaded by this student</p>`
 				data["docByUsers"].forEach(doc => {
 
 					uploadedFiles.innerHTML += `<div onclick="openViewer(this)" class="${doc.split("-")[0]}-${doc.split("-")[1]}-${doc.split("-")[2]}--${doc.split("-")[3]}-${doc.split("-")[4]}--${doc.split("-")[5]}--${doc.split("-")[6]}--${doc.split("-")[7]}" ><h2>${doc.split("-")[4]}</h2><p>${doc.split("-")[5]}</p><p>${doc.split("-")[6]}</p><p>${doc.split("-")[7]}</p></div>`

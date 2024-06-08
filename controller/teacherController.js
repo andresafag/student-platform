@@ -13,6 +13,11 @@ exports.teacherlogin = function (req,res){
   res.render("teacherView/teacherlogin");
 }
 
+exports.teacherloginfailure = function (req,res){
+  res.render("teacherView/teacherloginfailure");
+}
+
+
 // ------------------------------------------------------------------------
 
 exports.dashboard = async function(req,res){
@@ -180,8 +185,10 @@ exports.upload = function (req,res){
 
 exports.checkloginteacher = passport.authenticate('local', {
   successRedirect: '/teacherindex',
-  failureRedirect: '/teacherlogin'
+  failureRedirect: '/teacherloginfailure'
 })
+
+
 
 //----------------------------------------------------------------------
 

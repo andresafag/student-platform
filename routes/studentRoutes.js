@@ -6,6 +6,7 @@ const express = require('express'),
 
 router.get('/studentIndex', checkAuthentication, studentController.index)
 .get('/studentlogin', studentController.studentlogin)
+.get('/studentloginfailure', studentController.studentloginfailure)
 .get('/dashboard', checkAuthentication, studentController.dashboard)
 .get('/messages', checkAuthentication, studentController.messages)
 .get('/upload', checkAuthentication, studentController.uploadGet)
@@ -15,5 +16,3 @@ router.get('/studentIndex', checkAuthentication, studentController.index)
 .get('/out', checkAuthentication, studentController.logout);
 
 module.exports = router
-
-

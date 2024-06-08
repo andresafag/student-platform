@@ -37,14 +37,7 @@ function getStudentIdByStudentFullname (name,lastName) {
 
 
 async function getModulesOfAParticularStudent(course){
-      let getModulesArray = []
       let getModules = await Course.find({course_name:course})
-      // for (let index = 0; index < getModules.length; index++) {
-      //       const element = getModules[index];
-      //       let moduleNames = await Module.find({element})
-      //       getModulesArray.push(moduleNames[0].module_name)
-      //     }
-
       return getModules
 }
 

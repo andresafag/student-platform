@@ -5,6 +5,7 @@ const express = require('express'),
 
 
 router.get('/teacherlogin', teacherController.teacherlogin)
+.get('/teacherloginfailure', teacherController.teacherloginfailure)
 .get('/teacherdashboard', checkAuthenticationTeacher, teacherController.dashboard)
 .get('/teacherindex', checkAuthenticationTeacher,  teacherController.teacherindex)
 .post('/getstudents', checkAuthenticationTeacher,  teacherController.getstudents)

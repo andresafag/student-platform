@@ -6,25 +6,6 @@ const passport = require('passport'),
       deserialize = require('./serializer.js').deserialize
 
 let verifyUser = async (userName, passWd,cb)=>{    
-    // console.log("hello " + userName + " and " + passWd)
-//     Student.findOne({username:userName, password:passWd}, (err, user) => {
-//         if (!err && user) {
-//             cb(null,user)
-//         }
-//         if (!err && !user) {
-//             Teacher.findOne({teacher_username:userName, password:passWd}, (err, user) => {
-//                 if (!err && user) {
-//                     cb(null,user)
-//                 } 
-// // 
-//                 if (!err && !user) {
-//                     cb(null,false)
-//                 }
-//         // 
-//             })     
-//         } 
-//         // 
-//     })
 
     let res = await Student.findOne({username:userName, password:passWd})
     if (res == null ) {
@@ -38,6 +19,12 @@ let verifyUser = async (userName, passWd,cb)=>{
         cb(null,res)
     }
 
+    // let res = await Student.findOne({username:userName, password:passWd})
+    // if (res != null ) {
+    //         cb(null,res) 
+    //     } else {
+    //         cb(null,false)
+    //     }
 
 }
 
@@ -47,7 +34,7 @@ serialize
 deserialize
 
 exports.checkAuthenticationStudent = function(req,res,next){
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated() && req.user.role == "student"){
         next();
     } else {
         res.redirect("/studentlogin");
@@ -56,7 +43,7 @@ exports.checkAuthenticationStudent = function(req,res,next){
 
 
 exports.checkAuthenticationTeacher = function(req,res,next){
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated() && req.user.role == "teacher"){
         next();
     } else {
         res.redirect("/teacherlogin");
