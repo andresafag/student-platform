@@ -42,7 +42,9 @@ Below are the grades of a student
 
 ![mongoosee](https://github.com/andresafag/student-platform/assets/99931537/7a59ab70-070d-42ea-a69e-eb2c52ee2da2) 8.2.2
 
-![multer](https://github.com/andresafag/student-platform/assets/99931537/d36d6c34-dbfe-4e30-bc5d-83709c0267f6) Multer 1.4.5 
+
+![multer (1)](https://github.com/andresafag/student-platform/assets/99931537/1676f9f0-0fbc-42ab-b921-8ba434735fff)   Multer 1.4.5 
+
 
 ![passportjs (1)](https://github.com/andresafag/student-platform/assets/99931537/8e1c2672-4daf-43c5-a452-ac4f546a8d7e)  0.7.0
 
